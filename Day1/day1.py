@@ -1,6 +1,5 @@
-import pathlib
-import sys
 
+# Renvoie 2 listes, une avec tous les éléments "à gauche" de la première liste, l'autre avec les éléments "à droite"
 def split_left_and_right(list):
     left_ints = []
     right_ints = []
@@ -18,22 +17,14 @@ def solve_part1(puzzle_input: list):
     left_ints.sort()
     right_ints.sort()
 
-    sum = 0
-    for left_int, right_int in zip(left_ints, right_ints):
-        sum += abs(left_int - right_int)
-
-    return sum
+    return sum(abs(left_int - right_int) for left_int, right_int in zip(left_ints, right_ints))
 
 def solve_part2(puzzle_input):
     print("Solving part 2...")
     
     left_ints, right_ints = split_left_and_right(puzzle_input)
 
-    sum = 0
-    for left_int in left_ints:
-        sum += right_ints.count(left_int) * left_int
-
-    return sum
+    return sum(right_ints.count(left_int) * left_int for left_int in left_ints)
 
 if __name__ == "__main__":
     print("----- Example 1 -----")

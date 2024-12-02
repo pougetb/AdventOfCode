@@ -1,6 +1,3 @@
-import pathlib
-import sys
-import bisect
 
 def solve_part1(puzzle_input: list):
     print("Solving part 1...")
@@ -23,6 +20,6 @@ if __name__ == "__main__":
     example2_input = open("example2.txt", "r").read().split("\n")
     print(f"Example 2 result : {solve_part2(example2_input)}\n")
     
-    """print("----- Part 2 -----")
+    print("----- Part 2 -----")
     part2_input = open("part2.txt", "r").read().split("\n")
-    print(f"Part 2 result : {solve_part2(part2_input)}\n")"""
+    print(f"Part 2 result : {solve_part2(part2_input)}\n")
