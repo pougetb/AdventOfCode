@@ -38,9 +38,8 @@ def create_empty_matrix(shape):
     matrix = np.empty((shape[0], shape[1]), dtype=object)
 
     # Initialisation avec des tableaux vides
-    for i in range(shape[0]):
-        for j in range(shape[1]):
-            matrix[i, j] = []
+    for idx, value in np.ndenumerate(matrix):
+        matrix[idx] = []
 
     return matrix
 
@@ -103,35 +102,35 @@ def solve_part2(puzzle_input: list):
 
     total = 0
     initial_state = (current_position, 0)
-    for i, row in enumerate(matrix):
-         for j, value in enumerate(row):
-            # Teste de poser un obstacle uniquement sur le parcours du garde
-            if(value == 'X'):
-                # Pose un obstacle
-                matrix[i][j] = '#'
 
-                current_state = initial_state
+    for idx, value in np.ndenumerate(matrix):
+        # Teste de poser un obstacle uniquement sur le parcours du garde
+        if(value == 'X'):
+            # Pose un obstacle
+            matrix[idx] = '#'
 
-                # Créer une matrice de la même taille que la matrice initiale, initialisée avec que des tableaux vides
-                # Chaque tableau contient les directions du garde si il est passé par cette case
-                previous_mouvements = create_empty_matrix(matrix.shape)
+            current_state = initial_state
 
-                is_valid_obstacle = False
+            # Créer une matrice de la même taille que la matrice initiale, initialisée avec que des tableaux vides
+            # Chaque tableau contient les directions du garde si il est passé par cette case
+            previous_mouvements = create_empty_matrix(matrix.shape)
 
-                while current_state and not is_valid_obstacle:
-                    pos, direction = current_state
-                    
-                    # Si le garde est déjà passé par cette case et dans la même direction, alors il est bloqué et l'obstacle est valide
-                    if(direction in previous_mouvements[pos]):
-                        is_valid_obstacle = True
-                        total += 1
-                    else:
-                        # Ajoute la direction actuelle du garde dans le tableau et passe à la position suivante
-                        previous_mouvements[pos].append(direction)
-                        current_state = get_next_position_and_direction(pos, matrix, directions, direction)
+            is_valid_obstacle = False
 
-                # Retire l'obstacle
-                matrix[i][j] = '.'
+            while current_state and not is_valid_obstacle:
+                pos, direction = current_state
+                
+                # Si le garde est déjà passé par cette case et dans la même direction, alors il est bloqué et l'obstacle est valide
+                if(direction in previous_mouvements[pos]):
+                    is_valid_obstacle = True
+                    total += 1
+                else:
+                    # Ajoute la direction actuelle du garde dans le tableau et passe à la position suivante
+                    previous_mouvements[pos].append(direction)
+                    current_state = get_next_position_and_direction(pos, matrix, directions, direction)
+
+            # Retire l'obstacle
+            matrix[idx] = '.'
                 
     return total
 
