@@ -82,8 +82,10 @@ def solve_part1(puzzle_input: list):
                 for frequence in get_frequencies_in_bounds(i, j, k, l, matrix.shape)
                 if frequence not in already_used_frequences
             ]
-            
+    
+    # Retoune le total de fréquences
     return len(already_used_frequences)
+
 
 def solve_part2(puzzle_input: list):
     print("Solving part 2...")
@@ -113,7 +115,8 @@ def solve_part2(puzzle_input: list):
                 for frequence in get_frequencies_in_bounds_part2(i, j, k, l, matrix.shape)
                 if frequence not in already_used_frequences
             ]
-            
+    
+    # Retoune le total de fréquences
     return len(already_used_frequences)
 
 if __name__ == "__main__":
