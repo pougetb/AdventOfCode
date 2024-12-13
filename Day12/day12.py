@@ -136,13 +136,13 @@ def solve_part2(puzzle_input: list):
     return total
 
 if __name__ == "__main__":
-    """print("----- Example 1 -----")
+    print("----- Example 1 -----")
     example1_input = open("example.txt", "r").read().splitlines()
     print(f"Example 1 result : {solve_part1(example1_input)}\n")
 
     print("----- Part 1 -----")
     part1_input = open("input.txt", "r").read().splitlines()
-    print(f"Part 1 result : {solve_part1(part1_input)}\n")"""
+    print(f"Part 1 result : {solve_part1(part1_input)}\n")
 
     print("----- Example 2 -----")
     example2_input = open("example.txt", "r").read().splitlines()
